@@ -36,6 +36,12 @@
 			<groupId>javax.jms</groupId>
 			<artifactId>javax.jms-api</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-all -->
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-all</artifactId>
+		</dependency>
+
 
 	</dependencies>
 
