@@ -6,6 +6,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
 
+
 @Slf4j
 //Class used to send a message to queue
 public class MessageSender {
@@ -14,7 +15,7 @@ public class MessageSender {
 //Queue name
     private static String queueName = "MESSAGE_QUEUE";
 
-    public static void main(String[]args) throws JMSException{
+    public static void main(String[]args) throws JMSException {
         log.info("**********url**********" + url);
 //        Get the JMS connection from the jms server and starting it
         ConnectionFactory connectionFactory =  new ActiveMQConnectionFactory(url);
@@ -35,6 +36,6 @@ public class MessageSender {
         log.info("The text message been sent to the queue "+ message.getText());
 
 //        then close the connection
-        connection.close();
+//        connection.close();
     }
 }
