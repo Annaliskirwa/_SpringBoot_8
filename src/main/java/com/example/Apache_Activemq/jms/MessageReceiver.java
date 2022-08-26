@@ -4,9 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSException;
+import javax.jms.*;
 
 @Slf4j
 //Class used to receive the message from the queue
@@ -24,6 +22,17 @@ public class MessageReceiver {
         Connection connection = connectionFactory.createConnection();
         connection.start();
 
-//
+//        Create a session to receive the messages
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+//        Destination which is the MESSAGE_QUEUE
+        Destination destination = session.createQueue(queueName);
+
+//        Message consumer for receiving messages
+        MessageConsumer consumer = session.createConsumer(destination);
+
+//        Receive the message
+        Message message = consumer.receive();
+
     }
 }
