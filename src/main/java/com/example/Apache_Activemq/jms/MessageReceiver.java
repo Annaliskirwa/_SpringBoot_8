@@ -34,5 +34,10 @@ public class MessageReceiver {
 //        Receive the message
         Message message = consumer.receive();
 
+        if (message instanceof TextMessage){
+            TextMessage textMessage = (TextMessage) message;
+            log.info("*********Received the text message from queue*********" + textMessage.getText());
+        }
+        connection.close();
     }
 }
