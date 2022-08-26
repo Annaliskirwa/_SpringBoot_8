@@ -31,6 +31,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.jms/javax.jms-api -->
+		<dependency>
+			<groupId>javax.jms</groupId>
+			<artifactId>javax.jms-api</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
