@@ -1,0 +1,4 @@
+Download activemq 5
+cd to activemq bin folder
+cmd
+activemq start
