@@ -1,6 +1,8 @@
 package com.example.Apache_Activemq.utils;
 
 import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 
@@ -27,5 +29,12 @@ public class Utils {
             return p;
         }
         return phone;
+    }
+    public String getTime() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd HH:mm:ss");
+        ZonedDateTime now = ZonedDateTime.now();
+        System.out.println(dtf.format(now));
+
+        return dtf.format(now);
     }
 }
