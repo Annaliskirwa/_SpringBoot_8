@@ -1,5 +1,6 @@
 package com.example.Apache_Activemq.receiver;
 
+import com.example.Apache_Activemq.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.converter.MessageConverter;
@@ -21,6 +22,19 @@ public class MessageReceiver {
             Message message = jmsTemplate.receive();
             String response = (String) messageConverter.fromMessage(message);
             return response;
+        }
+        catch(Exception exe){
+            exe.printStackTrace();
+        }
+        return null;
+    }
+
+    public Product receiveMessage1(){
+        try{
+//            receive the message here
+            Message message = jmsTemplate.receive();
+            Product product = (Product) messageConverter.fromMessage(message);
+            return product;
         }
         catch(Exception exe){
             exe.printStackTrace();
