@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.support.converter.MessageConverter;
+import org.springframework.jms.support.converter.SimpleMessageConverter;
 
 import javax.jms.ConnectionFactory;
 import java.util.Arrays;
@@ -32,5 +34,9 @@ public class MessageConfiguration {
         template.setConnectionFactory(connectionFactory());
         template.setDefaultDestinationName(MESSAGE_QUEUE);
         return template;
+    }
+    @Bean
+    MessageConverter converter(){
+        return new SimpleMessageConverter();
     }
 }
