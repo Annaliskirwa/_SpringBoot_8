@@ -36,6 +36,6 @@ public class MessageSender {
         log.info("The text message been sent to the queue "+ message.getText());
 
 //        then close the connection
-//        connection.close();
+        connection.close();
     }
 }
