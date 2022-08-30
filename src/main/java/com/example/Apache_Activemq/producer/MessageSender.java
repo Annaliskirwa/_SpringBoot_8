@@ -1,6 +1,5 @@
 package com.example.Apache_Activemq.producer;
 
-import com.example.Apache_Activemq.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
@@ -30,7 +29,7 @@ public class MessageSender
             }
         });
     }
-    public void sendMessage1(final Product product){
+    public void sendMessage1(final String product){
         jmsTemplate.send(new MessageCreator() {
         public Message createMessage(Session session) throws  JMSException{
             ObjectMessage objectMessage =  session.createObjectMessage(product);
