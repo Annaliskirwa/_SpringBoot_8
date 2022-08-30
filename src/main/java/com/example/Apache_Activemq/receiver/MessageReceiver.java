@@ -1,14 +1,17 @@
 package com.example.Apache_Activemq.receiver;
 
 import com.example.Apache_Activemq.model.Product;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.stereotype.Component;
 
+import javax.jms.JMSException;
 import javax.jms.Message;
 
 @Component
+@Slf4j
 public class MessageReceiver {
     @Autowired
     JmsTemplate jmsTemplate;
@@ -40,5 +43,15 @@ public class MessageReceiver {
             exe.printStackTrace();
         }
         return null;
+    }
+    public void onMessage(Message message){
+        try{
+            Product product = (Product) messageConverter.fromMessage(message);
+            log.info("*************Inside the message***************");
+            log.info(String.valueOf(product));
+            log.info("*************Inside the message***************");
+        } catch (JMSException ex) {
+            ex.printStackTrace();
+        }
     }
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.listener.DefaultMessageListenerContainer;
+import org.springframework.jms.listener.MessageListenerContainer;
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.SimpleMessageConverter;
 
@@ -34,6 +36,16 @@ public class MessageConfiguration {
         template.setConnectionFactory(connectionFactory());
         template.setDefaultDestinationName(MESSAGE_QUEUE);
         return template;
+    }
+
+//    Message listener container for invoking the messagereceiver onMessage reception
+    @Bean
+    public MessageListenerContainer getContainer(){
+        DefaultMessageListenerContainer container = new DefaultMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory());
+        container.setDestinationName(MESSAGE_QUEUE);
+        container.setMessageListener(messageReceiver);
+        return container;
     }
     @Bean
     MessageConverter converter(){
