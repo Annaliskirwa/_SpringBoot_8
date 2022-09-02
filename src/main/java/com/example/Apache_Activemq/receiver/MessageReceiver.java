@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
+import javax.jms.MessageListener;
 
 @Component
 @Slf4j
-public class MessageReceiver {
+public class MessageReceiver implements MessageListener {
     @Autowired
     JmsTemplate jmsTemplate;
 

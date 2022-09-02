@@ -23,32 +23,45 @@ public class MessageConfiguration {
     MessageReceiver messageReceiver;
 
     @Bean
-    public ConnectionFactory connectionFactory(){
+    public ConnectionFactory connectionFactory()
+    {
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
         connectionFactory.setBrokerURL(DEFAULT_BROKER_URL);
-        connectionFactory.setTrustedPackages(Arrays.asList("com.example"));
+        connectionFactory
+                .setTrustedPackages(Arrays.asList("com.ram"));
         return connectionFactory;
     }
-//    Sending messages
-    @Bean
-    public JmsTemplate jmsTemplate(){
-        JmsTemplate template = new JmsTemplate();
-        template.setConnectionFactory(connectionFactory());
-        template.setDefaultDestinationName(MESSAGE_QUEUE);
-        return template;
-    }
 
-//    Message listener container for invoking the messagereceiver onMessage reception
+    /*
+     * Message listener container, used for invoking
+     * messageReceiver.onMessage on message reception.
+     */
     @Bean
-    public MessageListenerContainer getContainer(){
+    public MessageListenerContainer getContainer()
+    {
         DefaultMessageListenerContainer container = new DefaultMessageListenerContainer();
         container.setConnectionFactory(connectionFactory());
         container.setDestinationName(MESSAGE_QUEUE);
         container.setMessageListener(messageReceiver);
         return container;
     }
+
+    /*
+     * Used here for Sending Messages.
+     */
     @Bean
-    MessageConverter converter(){
+    public JmsTemplate jmsTemplate()
+    {
+        JmsTemplate template = new JmsTemplate();
+        template.setConnectionFactory(connectionFactory());
+        template.setDefaultDestinationName(MESSAGE_QUEUE);
+        return template;
+    }
+
+    @Bean
+    MessageConverter converter()
+    {
         return new SimpleMessageConverter();
     }
+
 }
